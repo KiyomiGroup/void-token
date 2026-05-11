@@ -197,11 +197,10 @@ export default function Home() {
         style={{
           position: 'relative',
           minHeight: '100svh',
-          paddingTop: '60px',
           display: 'flex', flexDirection: 'column',
           alignItems: 'center', justifyContent: 'center',
           textAlign: 'center',
-          padding: '80px 20px 60px',
+          padding: '100px 20px 80px',
           overflow: 'hidden',
         }}
       >
@@ -293,19 +292,103 @@ export default function Home() {
           display: 'flex', gap: '0.85rem', flexWrap: 'wrap', justifyContent: 'center',
           animation: mounted ? 'fadeSlideUp 0.8s ease 0.85s both' : 'none',
           width: '100%', maxWidth: '380px',
+          position: 'relative', zIndex: 2,
         }}>
-          <button className="btn-primary" style={{ flex: 1 }}>Enter the Void</button>
-          <button className="btn-outline" style={{ flex: 1 }}>Buy $VOID</button>
+          {/* Primary — purple → cyan sweep */}
+          <button
+            style={{
+              flex: 1,
+              padding: '14px 32px',
+              borderRadius: '999px',
+              border: 'none',
+              cursor: 'pointer',
+              fontFamily: 'var(--font-jetbrains, monospace)',
+              fontSize: '0.72rem',
+              fontWeight: 700,
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              color: '#fff',
+              position: 'relative',
+              overflow: 'hidden',
+              background: '#a855f7',
+              transition: 'transform 0.25s cubic-bezier(0.22,1,0.36,1)',
+              whiteSpace: 'nowrap',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.transform = 'translateY(-2px) scale(1.03)'
+              const sweep = e.currentTarget.querySelector('.sweep') as HTMLElement
+              if (sweep) sweep.style.transform = 'translateX(0%)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.transform = 'translateY(0) scale(1)'
+              const sweep = e.currentTarget.querySelector('.sweep') as HTMLElement
+              if (sweep) sweep.style.transform = 'translateX(-101%)'
+            }}
+          >
+            <span className="sweep" style={{
+              position: 'absolute', inset: 0,
+              background: 'linear-gradient(90deg, #22d3ee, #a855f7)',
+              transform: 'translateX(-101%)',
+              transition: 'transform 0.45s cubic-bezier(0.22,1,0.36,1)',
+              borderRadius: '999px',
+            }} />
+            <span style={{ position: 'relative', zIndex: 1 }}>Enter the Void</span>
+          </button>
+
+          {/* Outline — transparent → purple sweep */}
+          <button
+            style={{
+              flex: 1,
+              padding: '13px 32px',
+              borderRadius: '999px',
+              border: '1px solid rgba(255,255,255,0.22)',
+              cursor: 'pointer',
+              fontFamily: 'var(--font-jetbrains, monospace)',
+              fontSize: '0.72rem',
+              fontWeight: 700,
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              color: '#ededed',
+              position: 'relative',
+              overflow: 'hidden',
+              background: 'transparent',
+              transition: 'transform 0.25s cubic-bezier(0.22,1,0.36,1), border-color 0.25s',
+              whiteSpace: 'nowrap',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.transform = 'translateY(-2px) scale(1.03)'
+              e.currentTarget.style.borderColor = 'rgba(168,85,247,0.6)'
+              const sweep = e.currentTarget.querySelector('.sweep') as HTMLElement
+              if (sweep) sweep.style.transform = 'translateX(0%)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.transform = 'translateY(0) scale(1)'
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.22)'
+              const sweep = e.currentTarget.querySelector('.sweep') as HTMLElement
+              if (sweep) sweep.style.transform = 'translateX(-101%)'
+            }}
+          >
+            <span className="sweep" style={{
+              position: 'absolute', inset: 0,
+              background: 'linear-gradient(90deg, rgba(168,85,247,0.35), rgba(168,85,247,0.12))',
+              transform: 'translateX(-101%)',
+              transition: 'transform 0.45s cubic-bezier(0.22,1,0.36,1)',
+              borderRadius: '999px',
+            }} />
+            <span style={{ position: 'relative', zIndex: 1 }}>Buy $VOID</span>
+          </button>
         </div>
 
-        {/* Scroll arrow */}
+        {/* Scroll indicator — pushed below buttons with margin, not absolute */}
         <div aria-hidden style={{
-          position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)',
           display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px',
-          opacity: 0.45, animation: mounted ? 'fadeSlideUp 1s ease 1.3s both' : 'none',
+          opacity: 0.4,
+          marginTop: '3rem',
+          animation: mounted ? 'fadeSlideUp 1s ease 1.3s both' : 'none',
+          position: 'relative', zIndex: 2,
         }}>
-          <span style={{ ...MONO, fontSize: '0.5rem', letterSpacing: '0.3em', textTransform: 'uppercase' }}>Scroll</span>
-          <div style={{ width: '1px', height: '44px', background: 'linear-gradient(180deg,rgba(168,85,247,0.8),transparent)', animation: 'orbFloat 2.2s ease-in-out infinite' }} />
+          <span style={{ ...MONO, fontSize: '0.48rem', letterSpacing: '0.35em', textTransform: 'uppercase' }}>Scroll</span>
+          <div style={{ width: '1px', height: '40px', background: 'linear-gradient(180deg,rgba(168,85,247,0.8),transparent)', animation: 'orbFloat 2.2s ease-in-out infinite' }} />
         </div>
       </section>
 
