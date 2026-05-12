@@ -8,6 +8,7 @@
 
 import Image from 'next/image'
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { LoreSection } from './components/LoreSection'
 
 /* ── DATA ──────────────────────────────────────────────────── */
 const TICKER = [
@@ -402,6 +403,11 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      {/* ══════════════════════════════════════════════════════
+          LORE SECTION (SPRINT 2)
+      ══════════════════════════════════════════════════════ */}
+      <LoreSection />
 
       {/* ══════════════════════════════════════════════════════
           STATS — 4 rounded cards (Floki style)
